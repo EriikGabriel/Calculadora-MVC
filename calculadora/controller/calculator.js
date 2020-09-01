@@ -75,7 +75,9 @@ $(document).ready(() => {
                 break;
             case "=":
                 if(display.data('isResult') !== true) {
-                    var conta = display.data('value') + parseInt(display.val())
+                    console.log('Operação: ' + display.data('operation'))
+                    if(display.data('operation') == '+') var conta = display.data('value') + parseInt(display.val())
+                    if(display.data('operation') == '-') var conta = display.data('value') - parseInt(display.val())
 
                     miniDisplay.html(`${miniDisplay.html()} ${display.val()}`)
                     display.val(conta)
@@ -100,6 +102,10 @@ $(document).ready(() => {
                 display.val('')
                 display.val(id)
                 display.data('operation', false)
+            } else if(id == `${i}` && display.data('operation') == '-') {
+                display.val('')
+                display.val(id)
+                display.data('operation', '-')
             } else if(id == `${i}`){
                 display.val(`${display.val()}${id}`)
             }
